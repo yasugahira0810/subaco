@@ -18,51 +18,35 @@
 
     rails s -b $IP -p $PORT
 
-# Sign Up
+# Create User
 
-サインアップすると以下のメッセージが出る。
+db/seeds.rbをいじる。
 
-    Account not activated. Check your email for the activation link.
+	cat db/seeds.rb 
+	User.create!(name: "安ヶ平　雄太",
+	             email: "hourou_freak@yahoo.co.jp",
+	             password:              "password",
+	             password_confirmation: "password",
+	             admin: true,
+	             activated: true,
+	             activated_at: Time.zone.now)
+	
+	99.times do |n|
+	  name  = Faker::Name.name
+	  email = "example-#{n+1}@railstutorial.org"
+	  password = "password"
+	  User.create!(name:  name,
+	               email: email,
+	               password:              password,
+	               password_confirmation: password,
+	               activated: true,
+	               activated_at: Time.zone.now)
+	end
 
-DBのアクティベーション状態を書き換える。
+migrateする。rails tutorialの9.3.2あたりに書いてある。
 
-    sqlite3 db/development.sqlite3
-    SQLite version 3.8.2 2013-12-06 14:53:30
-    Enter ".help" for instructions
-    Enter SQL statements terminated with a ";"
-    sqlite> .tables
-    schema_migrations  users            
-    sqlite> .headers ON
-    sqlite> .mode line
-                   id = 1
-                 name = 安ヶ平雄太
-                email = hourou_freak@yahoo.co.jp
-           created_at = 2016-07-13 12:26:55.306672
-           updated_at = 2016-07-13 12:26:55.306672
-      password_digest = $2a$10$vVI4/YAGWXGyaVPhjG6J.OaWssBGpmRMQZInEBjlvmETCRZhS6dli
-      remember_digest = 
-                admin = f
-    activation_digest = $2a$10$Hsv7QeW8U22zZoCLBFCUferdqi9M1hOkL7ToFJGFirign28t.640q
-            activated = f
-         activated_at = 
-         reset_digest = 
-        reset_sent_at = 
-    sqlite> UPDATE users SET activated = 't' WHERE id = 1;                                                   
-    sqlite> SELECT * from users;
-                   id = 1
-                 name = 安ヶ平雄太
-                email = hourou_freak@yahoo.co.jp
-           created_at = 2016-07-13 12:26:55.306672
-           updated_at = 2016-07-13 12:26:55.306672
-      password_digest = $2a$10$vVI4/YAGWXGyaVPhjG6J.OaWssBGpmRMQZInEBjlvmETCRZhS6dli
-      remember_digest = 
-                admin = f
-    activation_digest = $2a$10$Hsv7QeW8U22zZoCLBFCUferdqi9M1hOkL7ToFJGFirign28t.640q
-            activated = t
-         activated_at = 
-         reset_digest = 
-        reset_sent_at = 
-    sqlite> 
+	bundle exec rake db:migrate:reset
+	bundle exec rake db:seed
 
 # Install fullcalendar-rails
 
