@@ -51,3 +51,10 @@ migrateする。rails tutorialの9.3.2あたりに書いてある。
 # Install fullcalendar-rails
 
 - [fullcalendar-rails](https://github.com/bokmann/fullcalendar-rails)に  記載の手順を実施して、bundle install。
+
+# Display Calendar
+
+app/assets/javascripts/calendar.jsを作成する。  
+あとはカレンダーを入れたいHTMLに、以下のコードを加えれば、それでカレンダーが表示される。
+
+	<div id="calendar"></div>
