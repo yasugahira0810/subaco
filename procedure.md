@@ -16,7 +16,8 @@
 
 # Access Confirmation
 
+    rails s -b $IP -p $PORT
+
 # Install fullcalendar-rails
 
-- [fullcalendar-rails](https://github.com/bokmann/fullcalendar-rails)に  
-記載の手順実施して、bundle install。
+- [fullcalendar-rails](https://github.com/bokmann/fullcalendar-rails)に  記載の手順を実施して、bundle install。
