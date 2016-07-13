@@ -10,3 +10,10 @@
     git commit -am "initial commit"
     git remote add origin https://github.com/yasugahira0810/subaco2.git
     git push origin master
+    gem install bundler
+    bundle install
+
+# Install fullcalendar-rails
+
+- [fullcalendar-rails](https://github.com/bokmann/fullcalendar-rails)に  
+記載の手順実施して、bundle install。
