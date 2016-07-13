@@ -12,6 +12,9 @@
     git push origin master
     gem install bundler
     bundle install
+    rake db:migrate
+
+# Access Confirmation
 
 # Install fullcalendar-rails
 
