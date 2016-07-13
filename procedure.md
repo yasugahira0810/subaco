@@ -20,13 +20,11 @@
 
 # Sign Up
 
-- サインアップすると以下のメッセージが出る。
-
+サインアップすると以下のメッセージが出る。
 
     Account not activated. Check your email for the activation link.
 
-- DBのアクティベーション状態を書き換える。
-
+DBのアクティベーション状態を書き換える。
 
     sqlite3 db/development.sqlite3
     SQLite version 3.8.2 2013-12-06 14:53:30
