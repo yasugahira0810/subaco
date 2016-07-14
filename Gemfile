@@ -19,6 +19,7 @@ gem 'sdoc',         '0.4.0', group: :doc
 # fullcalendar-rails
 gem 'fullcalendar-rails'
 gem 'momentjs-rails'
+gem 'jquery-turbolinks'
 
 group :development, :test do
   gem 'pry-rails'

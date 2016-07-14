@@ -58,3 +58,10 @@ app/assets/javascripts/calendar.jsを作成する。
 あとはカレンダーを入れたいHTMLに、以下のコードを加えれば、それでカレンダーが表示される。
 
 	<div id="calendar"></div>
+
+static_pageの一つとして表示されるように実装した。  
+すると、ＵＲＬ直アクセスだとアクセスできるが、ヘッダ経由だとカレンダーが表示されない事象が発生。  
+ググったところ、ターボリンクが悪さしているらしい。
+Gemfileにgem 'jquery-turbolinks'追加して、bundle update。bundle installの方がよかったかもだけど。  
+あとはapp/assets/javascripts/application.jsとapp/assets/javascripts/application.jsに追記。  
+そしたら表示された。
