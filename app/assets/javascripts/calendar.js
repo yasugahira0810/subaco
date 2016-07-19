@@ -1,5 +1,5 @@
 $(document).ready(function () {
-    var select = function(start, end, allDay) {
+    var select = function(start, end, allDay) { // http://fullcalendar.io/docs/event_data/events_function/
 //        var title = window.prompt("title");
         var title = window.open("https://subaco2-yasugahira0810.c9users.io/events/new", '_blank',
         'toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=yes, resizable=yes')
@@ -7,6 +7,8 @@ $(document).ready(function () {
                             start: start.format(),
                             end: end.format(), 
                             allDay: false}};
+        // http://fullcalendar.io/docs/event_data/events_json_feed/
+        // このあたり参考にすればすっきり書けそう。
         $.ajax({
             type: "POST",
             url: "/events",
@@ -19,7 +21,7 @@ $(document).ready(function () {
         calendar.fullCalendar('unselect');
     };
     // Documentの読み込みが完了するまで待機し、カレンダーを初期化します。
-    var calendar = $('#calendar').fullCalendar({
+    var calendar = $('#calendar').fullCalendar({ // #calenarは、calendar.html.erb内のidのこと
         // ヘッダーのタイトルとボタン
         header: {
             // title, prev, next, prevYear, nextYear, today
