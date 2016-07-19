@@ -3,21 +3,21 @@ $(document).ready(function () {
 //        var title = window.prompt("title");
         var title = window.open("https://subaco2-yasugahira0810.c9users.io/events/new", '_blank',
         'toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=yes, resizable=yes')
-        var data = {event: {title: title,
-                            start: start.format(),
-                            end: end.format(), 
-                            allDay: false}};
-        // http://fullcalendar.io/docs/event_data/events_json_feed/
-        // このあたり参考にすればすっきり書けそう。
-        $.ajax({
-            type: "POST",
-            url: "/events",
-            data: data,
-        }).done(function(data) {
-            calendar.fullCalendar('refetchEvents');
-        }).fail(function(data) {
-                alert('FAILED!!!');
-        });
+//        var data = {event: {title: title,
+//                            start: start.format(),
+//                            end: end.format(), 
+//                            allDay: false}};
+//        // http://fullcalendar.io/docs/event_data/events_json_feed/
+//        // このあたり参考にすればすっきり書けそう。
+//        $.ajax({
+//            type: "POST",
+//            url: "/events",
+//            data: data,
+//        }).done(function(data) {
+//            calendar.fullCalendar('refetchEvents');
+//        }).fail(function(data) {
+//                alert('FAILED!!!');
+//        });
         calendar.fullCalendar('unselect');
     };
     // Documentの読み込みが完了するまで待機し、カレンダーを初期化します。
