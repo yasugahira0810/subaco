@@ -65,3 +65,16 @@ static_pageの一つとして表示されるように実装した。
 Gemfileにgem 'jquery-turbolinks'追加して、bundle update。bundle installの方がよかったかもだけど。  
 あとはapp/assets/javascripts/application.jsとapp/assets/javascripts/application.jsに追記。  
 そしたら表示された。
+
+# Create Event Controller
+
+                rails g controller Events new create
+                rails g model Event title:string start:datetime end:datetime allDay:boolean user_name:string
+                rake db:migrate
+
+これだと以下のエラーが出る。
+
+                NoMethodError in EventsController#new
+                undefined method `events_path' for #<#<Class:0x00000004129c48>:0x00000004123118> Did you mean? events_new_path
+
+一回scaffoldでうまくいくか確認してみる。
