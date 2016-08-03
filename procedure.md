@@ -78,3 +78,8 @@ Gemfileにgem 'jquery-turbolinks'追加して、bundle update。bundle install�
                 undefined method `events_path' for #<#<Class:0x00000004129c48>:0x00000004123118> Did you mean? events_new_path
 
 一回scaffoldでうまくいくか確認してみる。
+
+# calendar.html.erbの追加
+
+git resetとかしているうちに、calendarページに行くと「Template is missing」になってしまうようになった。  
+calendar.html.erbを追加。
