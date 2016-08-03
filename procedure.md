@@ -79,6 +79,22 @@ Gemfileにgem 'jquery-turbolinks'追加して、bundle update。bundle install�
 
 一回scaffoldでうまくいくか確認してみる。
 
+************ 追記はじめ **************
+
+rails guideみたけど結局原因が理解できない。。。  
+[このあたり](http://railsguides.jp/routing.html)、エラーメッセージ理解するのには役立ちそうだけど。  
+
+2.3 パスとURL用ヘルパー
+リソースフルなルーティングを作成すると、アプリケーションのコントローラで多くのヘルパーが利用できるようになります。resources :photosというルーティングを例に取ってみましょう。
+
+photos_pathは/photosを返します
+new_photo_pathは/photos/newを返します
+edit_photo_path(:id)は/photos/:id/editを返します (edit_photo_path(10)であれば/photos/10/editが返されます)
+photo_path(:id)は/photos/:idを返します。 (photo_path(10)であれば/photos/10が返されます)
+これらの_pathヘルパーには、それぞれに対応する_urlヘルパー (photos_urlなど) があります。_urlヘルパーは、_pathの前に現在のホスト名、ポート番号、パスのプレフィックスが追加されている点が異なります。
+
+************ 追記終わり **************
+
 # calendar.html.erbの追加
 
 git resetとかしているうちに、calendarページに行くと「Template is missing」になってしまうようになった。  
@@ -90,4 +106,41 @@ scaffoldの前にsubaco側で設定変えて、同じようなエラーでない
 結果、どうも原因はrouting周りらしい。
 「get 'events/new'」を「resources: events」にしたらこのエラーはでなくなった。  
 もちろん根本解決したわけではないので、routing周り勉強する。  
-で、別のエラーが出るようになった。どうも変数がちゃんと渡せていない。
+で、別のエラーが出るようになった。どうも変数がちゃんと渡せていない。  
+これはDBの中にユーザが作成できていないのが悪かった。  
+rake db:seedでユーザ作ったらちゃんと動いた。
+
+		yasugahira0810:~/workspace/subaco2 (create_event_controller) $ rails console
+		Loading development environment (Rails 4.2.2)
+		[1] pry(main)> User.count
+		   (0.3ms)  SELECT COUNT(*) FROM "users"
+		=> 0
+		[2] pry(main)> 
+		[3] pry(main)> Event.count
+		   (0.2ms)  SELECT COUNT(*) FROM "events"
+		=> 0
+		[4] pry(main)> 
+		[4] pry(main)> quit
+		yasugahira0810:~/workspace/subaco2 (create_event_controller) $ rake db:seed
+		yasugahira0810:~/workspace/subaco2 (create_event_controller) $ rails console
+		Loading development environment (Rails 4.2.2)
+		[1] pry(main)> User.count
+		   (0.3ms)  SELECT COUNT(*) FROM "users"
+		=> 100
+		[2] pry(main)> User.first
+		  User Load (0.3ms)  SELECT  "users".* FROM "users"  ORDER BY "users"."id" ASC LIMIT 1
+		=> #<User:0x000000066fbc00
+		 id: 1,
+		 name: "安ヶ平　雄太",
+		 email: "hourou_freak@yahoo.co.jp",
+		 created_at: Wed, 03 Aug 2016 03:02:01 UTC +00:00,
+		 updated_at: Wed, 03 Aug 2016 03:02:01 UTC +00:00,
+		 password_digest: "$2a$10$A3kpkTDBiU/3hL7EEYPU.OiWcrB6eiHYelNm401k2RthOKZ66Q74C",
+		 remember_digest: nil,
+		 admin: true,
+		 activation_digest: "$2a$10$1pw7o8kCf1FY62eIy5nXPuzSmRiEakHhewsbE/8uNy1MxdVgVpbPi",
+		 activated: true,
+		 activated_at: Wed, 03 Aug 2016 03:02:01 UTC +00:00,
+		 reset_digest: nil,
+		 reset_sent_at: nil>
+		[3] pry(main)> quit
