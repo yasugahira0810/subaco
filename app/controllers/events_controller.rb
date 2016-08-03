@@ -1,6 +1,7 @@
 class EventsController < ApplicationController
   before_action :set_event, only: [:show, :edit, :update, :destroy]
 
+  # カレンダーにイベントを表示するために、indexアクションが必要
   def index
     @events = Event.all
   end
