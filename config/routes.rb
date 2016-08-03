@@ -1,4 +1,10 @@
 Rails.application.routes.draw do
+
+  resources :events
+#  get 'events/new'
+
+#  get 'events/new'
+
   get 'password_resets/new'
 
   get 'password_resets/edit'

@@ -1,2 +1,41 @@
-<h1>Events#new</h1>
-<p>Find me in app/views/events/new.html.erb</p>
+<h1>New Event</h1>
+
+<%= form_for @event do |f| %>
+        <%= f.label :title %>
+        <%= f.text_field :title %>
+
+        <% @event.start = params[:start] %>
+        <%= f.label :start %></br>
+        <%= f.datetime_select :start , {:discard_year => false, 
+                                                                                :use_month_numbers => true,
+                                                                                :add_month_numbers => true, 
+                                                                                :minute_step => 5, 
+                                                                                :multiple => true},
+                                                                                :style => "width: 60px;" %>
+
+        </br>
+
+        <% @event.end = params[:end] %>
+        <%= f.label :end %></br>
+        <%= f.datetime_select :end , {:discard_year => false, 
+                                                                                :use_month_numbers => true,
+                                                                                :add_month_numbers => true, 
+                                                                                :minute_step => 5, 
+                                                                                :multiple => true},
+                                                                                :style => "width: 60px;" %>
+
+        </br>
+
+        <%= f.label :allDay %>
+        <%= f.check_box :allDay %>
+
+        <% @event.user_name = User.find_by(id: session[:user_id]).name %>
+        <%= f.label :user_name %>
+        <%= f.text_field :user_name, :readonly => true %>
+
+        <%= f.submit "Create Event", class: "btn btn-primary" %>
+<% end %>
+
+<%= render 'form' %>
+
+<%= link_to 'Back', events_path %>

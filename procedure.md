@@ -83,3 +83,11 @@ Gemfileにgem 'jquery-turbolinks'追加して、bundle update。bundle install�
 
 git resetとかしているうちに、calendarページに行くと「Template is missing」になってしまうようになった。  
 calendar.html.erbを追加。
+
+# Create Event Controllerで出たエラーの回避
+
+scaffoldの前にsubaco側で設定変えて、同じようなエラーでないか確認した。  
+結果、どうも原因はrouting周りらしい。
+「get 'events/new'」を「resources: events」にしたらこのエラーはでなくなった。  
+もちろん根本解決したわけではないので、routing周り勉強する。  
+で、別のエラーが出るようになった。どうも変数がちゃんと渡せていない。
