@@ -15,8 +15,6 @@
 //= require jquery.turbolinks
 //= require bootstrap
 //= require turbolinks
-//= require_tree .
 //= require moment 
 //= require fullcalendar
-
-$('#calendar').fullCalendar({});
+//= require_tree .

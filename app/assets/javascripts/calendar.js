@@ -1,27 +1,5 @@
 $(document).ready(function () {
-    var select = function(start, end, allDay) { // http://fullcalendar.io/docs/event_data/events_function/
-//        var title = window.prompt("title");
-        var title = window.open("https://subaco2-yasugahira0810.c9users.io/events/new", '_blank',
-        'toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=yes, resizable=yes')
-//        var data = {event: {title: title,
-//                            start: start.format(),
-//                            end: end.format(), 
-//                            allDay: false}};
-//        // http://fullcalendar.io/docs/event_data/events_json_feed/
-//        // このあたり参考にすればすっきり書けそう。
-//        $.ajax({
-//            type: "POST",
-//            url: "/events",
-//            data: data,
-//        }).done(function(data) {
-//            calendar.fullCalendar('refetchEvents');
-//        }).fail(function(data) {
-//                alert('FAILED!!!');
-//        });
-        calendar.fullCalendar('unselect');
-    };
-    // Documentの読み込みが完了するまで待機し、カレンダーを初期化します。
-    var calendar = $('#calendar').fullCalendar({ // #calenarは、calendar.html.erb内のidのこと
+    $('#calendar').fullCalendar({
         // ヘッダーのタイトルとボタン
         header: {
             // title, prev, next, prevYear, nextYear, today
@@ -119,18 +97,16 @@ $(document).ready(function () {
         // event追加を許可
         selectable: true,
         // イベントソース
-        events: '/events.json',
         selectable: true,
         selectHelper: true,
         ignoreTimezone: false,
-        select: select
-    });
-    // 動的にオプションを変更する
-    //$('#calendar').fullCalendar('option', 'height', 700);
- 
-    // カレンダーをレンダリング。表示切替時などに使用
-    //$('#calendar').fullCalendar('render');
- 
-    // カレンダーを破棄（イベントハンドラや内部データも破棄する）
-    //$('#calendar').fullCalendar('destroy')
+        //events: 登録したデータを表示するためにはこの設定が必須。
+        //ただこれだけだとevent/newが開かない。別の設定が必要っぽい。
+        events: '/events.json',
+        // select: これがないとイベントが発火しない。
+        // 参考になるかも。http://stackoverflow.com/questions/21086640/fullcalendar-newevent-in-a-new-window
+        select: function(start, end, allDay) {
+          window.open("../events/new?start="+start.format()+"&end="+end.format(), '_blank', 'toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=yes, resizable=yes');
+        }
+        });
 });
