@@ -107,6 +107,10 @@ $(document).ready(function () {
         // 参考になるかも。http://stackoverflow.com/questions/21086640/fullcalendar-newevent-in-a-new-window
         select: function(start, end, allDay) {
           window.open("../events/new?start="+start.format()+"&end="+end.format(), '_blank', 'toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=yes, resizable=yes');
+        },
+        eventClick: function(calEvent, jsEvent, view) {
+            window.open("../events/"+calEvent.id, '_blank', 'toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=yes, resizable=yes');
+            return false;
         }
         });
 });
