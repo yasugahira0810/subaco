@@ -40,6 +40,13 @@ class EventsController < ApplicationController
     end
   end
 
+  # DELETE /events/1
+  # DELETE /events/1.json
+  def destroy
+    @event.destroy
+    render "delete"
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_event

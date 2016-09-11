@@ -26,4 +26,5 @@
 </p>
 
 <%= link_to 'Edit', edit_event_path(@event) %> |
-<%= link_to 'Close', '_self', :onclick=>'window.opener.location.reload();window.close();' %>
+<%= link_to 'Close', '_self', :onclick=>'window.opener.location.reload();window.close();' %> |
+<%= link_to 'Delete', event_path(@event), :method => :delete, data: { confirm: "You sure?" } %>
